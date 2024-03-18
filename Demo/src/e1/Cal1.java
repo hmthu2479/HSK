@@ -92,9 +92,6 @@ public class Cal1 extends JFrame {
 			JOptionPane.showMessageDialog(this, "Invalid input! Please enter numbers only.", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
-
-	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
