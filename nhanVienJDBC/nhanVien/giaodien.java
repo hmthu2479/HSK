@@ -1,4 +1,4 @@
-package nhanVienFileIO;
+package nhanVien;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
