@@ -1,4 +1,4 @@
-package Sach;
+package nhanVien;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,7 +14,7 @@ public class db {
 		return con;
 	}
 	public void connect() {
-		String url = "jdbc:sqlserver://localhost:1433;databasename=QLNVien";
+		String url = "jdbc:sqlserver://localhost:1433;databasename=LopHoc";
 		String user = "sa";
 		String password = "123";
 		try {

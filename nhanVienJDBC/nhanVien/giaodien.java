@@ -143,7 +143,7 @@ public class giaodien extends JFrame implements ActionListener{
 		xoa.addActionListener(this);
 		tim.addActionListener(this);
 		luu.addActionListener(this);
-		DataFileHandler.loadDataFromFile(this);
+
 		
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -177,7 +177,7 @@ public class giaodien extends JFrame implements ActionListener{
 		}
 		if(o.equals(luu)) {
 			if (o.equals(luu)) {
-			    DataFileHandler.saveDataToFile(this);
+			    
 			}
 		}
 		if (o.equals(xoa)) {
