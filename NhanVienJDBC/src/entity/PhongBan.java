@@ -34,7 +34,6 @@ public class PhongBan {
 	}
 
 	public PhongBan(String maPhongBan, String tenPhongBan) {
-		super();
 		this.maPhongBan = maPhongBan;
 		this.tenPhongBan = tenPhongBan;
 	}

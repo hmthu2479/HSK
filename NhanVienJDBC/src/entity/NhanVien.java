@@ -9,7 +9,16 @@ public class NhanVien {
 	private float tienLuong;
 	private PhongBan phong;
 	
-	
+	public NhanVien(int maNV, String hoNV, String tenNV, int tuoi, boolean phai, float tienLuong, PhongBan phong) {
+		this.maNV = maNV;
+		this.hoNV = hoNV;
+		this.tenNV = tenNV;
+		this.tuoi = tuoi;
+		Phai = phai;
+		this.tienLuong = tienLuong;
+		this.phong = phong;
+	}
+
 	public String getHoNV() {
 		return hoNV;
 	}
@@ -56,6 +65,8 @@ public class NhanVien {
 	public int hashCode() {
 		return Objects.hash(maNV);
 	}
+	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -68,27 +79,13 @@ public class NhanVien {
 		return Objects.equals(maNV, other.maNV);
 	}
 	
-	
-	public NhanVien(int maNV, String hoNV, String tenNV, int tuoi, boolean phai, float tienLuong, PhongBan phong) {
-		super();
-		this.hoNV = hoNV;
-		this.tenNV = tenNV;
-		Phai = phai;
-		this.maNV = maNV;
-		this.tuoi = tuoi;
-		this.tienLuong = tienLuong;
-		this.phong = phong;
-	}
-	public NhanVien(String ma) {
-		// TODO Auto-generated constructor stub
-	}
-	
-	
+
 	@Override
 	public String toString() {
-		return "NhanVien [hoNV=" + hoNV + ", tenNV=" + tenNV + ", Phai=" + Phai + ", maNV=" + maNV + ", tuoi=" + tuoi
+		return "NhanVien [maNV=" + maNV + ", hoNV=" + hoNV + ", tenNV=" + tenNV + ", Phai=" + Phai + ", tuoi=" + tuoi
 				+ ", tienLuong=" + tienLuong + ", phong=" + phong + "]";
 	}
+
 	public static void main(String[] args) {
 		
 	}

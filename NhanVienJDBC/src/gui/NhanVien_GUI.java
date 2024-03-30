@@ -186,21 +186,30 @@ public class NhanVien_GUI extends JFrame implements ActionListener, MouseListene
 			String pBan = cboPhongBan.getSelectedItem().toString();
 			
 			NhanVien nv = new NhanVien(ma, ho, ten, tuoi, phai, luong, new PhongBan(pBan));
-			
-			if(!dsNV.themNV(nv)) {
-				JOptionPane.showMessageDialog(this, "Trùng mã");
-			}
-			else {
-				modelNV.addRow(new Object[] {nv.getMaNV(), nv.getHoNV(),
-						 phai_Nam_Nu,nv.getTuoi(), nv.getSdt()
-				});
+
+			try {
+			    nv_dao.create(nv);
+
+			    modelNhanVien.addRow(new Object[] { nv.getMaNV(), nv.getHoNV(), nv.getTenNV(),
+			        nv.getTuoi(), nv.isPhai()? "Nữ" : "Nam", nv.getTienLuong(), nv.getPhong().getMaPhongBan()
+			    });
+			} catch (Exception e2) {
+			    e2.printStackTrace(); 
+			    JOptionPane.showMessageDialog(this, "Trùng mã");
 			}
 		}
 		
 		if (o.equals(bttXoa)) {
-			int r = tableNhanVien.getSelectedRow();
-			modelNhanVien.removeRow(r); // xóa trong table model
-
+		    int r = tableNhanVien.getSelectedRow();
+		    if (r != -1 && modelNhanVien.getValueAt(r, 0) != null) {
+		        int maNV = (int) modelNhanVien.getValueAt(r, 0);
+		        modelNhanVien.removeRow(r);
+		        try {
+		            nv_dao.delete(maNV);
+		        } catch (Exception e1) {
+		            e1.printStackTrace();
+		        }
+		    }
 		}
 		if (o.equals(bttXoaTrang)) {
 			txtHo.setText("");
@@ -213,15 +222,13 @@ public class NhanVien_GUI extends JFrame implements ActionListener, MouseListene
 		if (o.equals(bttTim)) {
 
 		}
-		if (o.equals(bttLuu)) {
-		}
 
 	}
 
 	public void docDuLieuDBVaoTable() {
 		List<NhanVien> listNV = nv_dao.getalltbNhanVien();
 		for (NhanVien nv : listNV ) {
-			modelNhanVien.addRow(new Object [] {nv.getMaNV(),nv.getHoNV(),nv.getTenNV(),nv.getTuoi(),nv.isPhai(),nv.getTienLuong(),nv.getPhong()});
+			modelNhanVien.addRow(new Object [] {nv.getMaNV(),nv.getHoNV(),nv.getTenNV(),nv.getTuoi(),nv.isPhai() ? "Nữ" : "Nam",nv.getTienLuong(),nv.getPhong().getMaPhongBan()});
 		}
 	}
 	
