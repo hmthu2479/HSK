@@ -43,7 +43,6 @@ public class NhanVien_GUI extends JFrame implements ActionListener, MouseListene
 
 	private JTable tableNhanVien;
 	private DefaultTableModel modelNhanVien;
-	private NhanVien dsNV;
 	
 	private JTextField txtMaNV;
 	private JTextField txtHo;
