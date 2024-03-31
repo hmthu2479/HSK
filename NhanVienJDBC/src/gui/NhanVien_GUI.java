@@ -26,7 +26,9 @@ import javax.swing.JScrollPane;
 
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 import connectDB.ConnectDB;
 import dao.NhanVien_DAO;
@@ -52,7 +54,7 @@ public class NhanVien_GUI extends JFrame implements ActionListener, MouseListene
 	private JButton bttTim;
 	private JButton bttThem;
 	private JButton bttXoa;
-	private JButton bttLuu;
+	private JButton bttLoc;
 	private JButton bttXoaTrang;
 	
 	private JCheckBox chkNu;
@@ -60,6 +62,8 @@ public class NhanVien_GUI extends JFrame implements ActionListener, MouseListene
 
 	private NhanVien_DAO nv_dao;
 	private PhongBan_DAO pb_dao;
+
+	private JComboBox<String> cboPhongBanBtn;
 	
 
 	public NhanVien_GUI() {
@@ -76,7 +80,7 @@ public class NhanVien_GUI extends JFrame implements ActionListener, MouseListene
 		
 
 		setTitle("^-^");
-		setSize(800, 500);
+		setSize(900, 500);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 
@@ -159,12 +163,20 @@ public class NhanVien_GUI extends JFrame implements ActionListener, MouseListene
 		pnlRight.add(bttThem = new JButton("Thêm"));
 		pnlRight.add(bttXoaTrang = new JButton("Xóa trắng"));
 		pnlRight.add(bttXoa = new JButton("Xóa"));
-		pnlRight.add(bttLuu = new JButton("Loc theo Ph Ban"));
+		pnlRight.add(cboPhongBanBtn = new JComboBox<String>());
+		cboPhongBanBtn.setEditable(true);	
+		
+		ArrayList<PhongBan> listPban = pb_dao.getalltbNhanVien();
+		for (PhongBan pb :listPB) {
+			cboPhongBanBtn.addItem(pb.getMaPhongBan());
+		}
+		
+		pnlRight.add(bttLoc = new JButton("Lọc theo phòng ban"));
 
 		bttTim.addActionListener(this);
 		bttThem.addActionListener(this);
 		bttXoa.addActionListener(this);
-		bttLuu.addActionListener(this);
+		bttLoc.addActionListener(this);
 		bttXoaTrang.addActionListener(this);
 		tableNhanVien.addMouseListener(this);
 	}
@@ -216,7 +228,24 @@ public class NhanVien_GUI extends JFrame implements ActionListener, MouseListene
 			txtMaNV.requestFocus();
 		}
 		if (o.equals(bttTim)) {
-
+		    int maNV = Integer.parseInt(txtTim.getText());
+		    for (int i = 0; i < modelNhanVien.getRowCount(); i++) {
+		        int maNVRow = (int) modelNhanVien.getValueAt(i, 0);
+		        if (maNV == maNVRow) {
+		            tableNhanVien.setRowSelectionInterval(i, i);
+		            tableNhanVien.scrollRectToVisible(tableNhanVien.getCellRect(i, 0, true));
+		            return; 
+		        }
+		    }
+		    JOptionPane.showMessageDialog(this, "Không tìm thấy mã");
+		}
+		if (o.equals(bttLoc)) {
+		    String maPhongFilter = cboPhongBanBtn.getSelectedItem().toString();
+		    TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(modelNhanVien);
+		    tableNhanVien.setRowSorter(sorter);
+		    
+		    RowFilter<DefaultTableModel, Object> filter = RowFilter.regexFilter(maPhongFilter, 6);
+		    sorter.setRowFilter(filter);
 		}
 
 	}
