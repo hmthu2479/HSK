@@ -201,14 +201,10 @@ public class NhanVien_GUI extends JFrame implements ActionListener, MouseListene
 		
 		if (o.equals(bttXoa)) {
 		    int r = tableNhanVien.getSelectedRow();
-		    if (r != -1 && modelNhanVien.getValueAt(r, 0) != null) {
+		    if (r != -1) {
 		        int maNV = (int) modelNhanVien.getValueAt(r, 0);
 		        modelNhanVien.removeRow(r);
-		        try {
-		            nv_dao.delete(maNV);
-		        } catch (Exception e1) {
-		            e1.printStackTrace();
-		        }
+		        nv_dao.delete(maNV);
 		    }
 		}
 		if (o.equals(bttXoaTrang)) {
