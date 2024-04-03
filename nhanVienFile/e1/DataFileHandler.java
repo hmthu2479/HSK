@@ -1,4 +1,4 @@
-package nhanVienFileIO;
+package e1;
 
 import javax.swing.*;
 import java.io.BufferedWriter;
@@ -8,7 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class DataFileHandler {
-    private static final String FILE_PATH = "data/nhanvien.txt";
+    private static final String FILE_PATH = "e1/data/nhanvien.txt";
 
     public static void saveDataToFile(giaodien frame) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
