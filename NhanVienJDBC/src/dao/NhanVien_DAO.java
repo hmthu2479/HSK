@@ -44,7 +44,7 @@ public class NhanVien_DAO {
 		return dsnv;
 	}
 	//get NhanVien by MaNV
-/*	public ArrayList<NhanVien> getNhanVienTheoMaNV(int id) {
+	public ArrayList<NhanVien> getNhanVienTheoMaNV(int id) {
 		ArrayList<NhanVien> dsnv = new ArrayList<NhanVien>();
 		ConnectDB.getInstance();
 		Connection con = ConnectDB.getConnection();
@@ -118,7 +118,7 @@ public class NhanVien_DAO {
 			}
 		}
 		return dsnv;
-	}*/
+	}
 	public boolean create(NhanVien nv) {
 		ConnectDB.getInstance();
 		Connection con = ConnectDB.getConnection();
