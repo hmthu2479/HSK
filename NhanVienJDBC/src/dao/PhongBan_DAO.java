@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import connectDB.ConnectDB;
-import entity.NhanVien;
 import entity.PhongBan;
 
 public class PhongBan_DAO {
